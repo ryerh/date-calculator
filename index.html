@@ -1,1 +1,43 @@
-hello
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>日期计算器</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <form class="pure-form">
+      <label>从</label>
+      <input id="start" type="date" />
+      <label>开始，</label>
+      <input id="count" type="number" placeholder="1" />
+      <select id="type">
+        <option value="months">月</option>
+        <option value="years">年</option>
+        <option value="days">天</option>
+      </select>
+      <label>后，是:</label>
+      <label id="result"></label>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/momentjs/2.18.1/moment-with-locales.min.js"></script>
+    <script>
+      const start = document.querySelector('#start');
+      const count = document.querySelector('#count');
+      const type = document.querySelector('#type');
+      const result = document.querySelector('#result');
+
+      function render() {
+        const nextDate = moment(start.value)
+          .add(count.value, type.value)
+          .format('YYYY-MM-DD');
+        result.innerText = nextDate;
+      }
+
+      start.addEventListener('change', render);
+      count.addEventListener('change', render);
+      count.addEventListener('keydown', render);
+      type.addEventListener('change', render);
+    </script>
+  </body>
+</html>
