@@ -28,6 +28,7 @@
       const result = document.querySelector('#result');
 
       function render() {
+        console.log(start.value, count.value, type.value);
         const nextDate = moment(start.value)
           .add(count.value, type.value)
           .format('YYYY-MM-DD');
@@ -36,7 +37,7 @@
 
       start.addEventListener('change', render);
       count.addEventListener('change', render);
-      count.addEventListener('keydown', render);
+      count.addEventListener('keyup', render);
       type.addEventListener('change', render);
     </script>
   </body>
